@@ -1,0 +1,837 @@
+/* Global Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #2B2B2B;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 13px;
+}
+
+/* Remove tap highlight on mobile */
+* { -webkit-tap-highlight-color: transparent; }
+input:focus, label:focus, button:focus { outline: none; }
+
+/* Topbar */
+.topbar {
+  display: flex;
+  align-items: center;
+  padding: 14px 15px;
+  background: #000;
+  border-bottom: 1px solid #2B2B2B;
+  position: relative;
+  z-index: 1100;
+}
+.menu-btn {
+  width: 46px;
+  height: 42px;
+  font-size: 24px;
+  background: none;
+  color: #FF5700;
+  border: 2px solid #FF5700;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.logo {
+  height: 40px;
+  position: absolute;
+  top: 16px;
+  left: 80px;
+}
+.login-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  padding: 6px 8px;
+  font-size: 12px;
+  background: #000;
+  border: 1px solid #2B2B2B;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #FF5700;
+  cursor: pointer;
+}
+.login-btn:hover { background: #ddd2; color: #FF5700; }
+
+/* Sidebar - from left */
+.sidebar {
+  position: fixed;
+  top: 0; left: -300px;
+  width: 300px;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+  border-radius: 0 40px 40px 0;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.2);
+  transition: left 0.4s ease;
+  z-index: 1200;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Open state */
+.sidebar.open {
+  left: 0;
+}
+
+/* Sidebar menu items */
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.menu li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 20px;
+  font-size: 18px;
+  color: #fff;
+  transform: translateX(-50px);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  cursor: pointer;
+}
+
+/* Animate items when sidebar opens */
+.sidebar.open .menu li {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Staggered animation */
+.sidebar.open .menu li:nth-child(1) { transition-delay: 0.05s; }
+.sidebar.open .menu li:nth-child(2) { transition-delay: 0.10s; }
+.sidebar.open .menu li:nth-child(3) { transition-delay: 0.15s; }
+.sidebar.open .menu li:nth-child(4) { transition-delay: 0.20s; }
+.sidebar.open .menu li:nth-child(5) { transition-delay: 0.25s; }
+
+/* Icons */
+.icon {
+  font-size: 22px;
+  margin-right: 10px;
+  color: #FF5700;
+  flex-shrink: 0;
+  transition: transform 0.4s ease, color 0.3s ease;
+}
+
+/* Links */
+.menu li a {
+  text-decoration: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  transition: color 0.3s ease;
+}
+
+/* Hover effect */
+.menu li:hover {
+  background: #2B2B2B;
+  transform: translateX(5px);
+}
+.menu li:hover .icon {
+  transform: translateX(2px);
+}
+
+/* 🔥 Active (clicked) animation */
+.menu li.active {
+  background: #1a1a1a;
+  animation: bounce 0.4s ease;
+}
+
+.menu li.active .icon {
+  color: #FF5700;
+  transform: scale(1.3);
+}
+
+.menu li.active a {
+  color: #FF5700;
+}
+
+/* Bounce animation keyframes */
+@keyframes bounce {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 25px; right: 25px;
+  width: 30px; height: 30px;
+  background: none;
+  border: 3px solid #FF5700;
+  color: #FF5700;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.4s ease;
+  z-index: 1100;
+}
+.overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Container with black background */
+.whatsapp-banner-container {
+  width: 100%;
+  background-color: #000; /* black container */
+  padding: 10px 0;        /* space around the banner */
+  display: flex;
+  justify-content: center; /* center the banner horizontally */
+  box-sizing: border-box;
+}
+
+/* WhatsApp Banner */
+.whatsapp-banner {
+  width: 94%;
+  background-color: #ff5700; /* orange color */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 6px;
+  position: relative;
+  margin: 4px auto -3px auto;
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.whatsapp-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.whatsapp-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.whatsapp-text p {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.whatsapp-text a {
+  display: block;
+  color: #fff;
+  text-decoration: underline;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.whatsapp-text a:hover {
+  text-decoration: none;
+}
+
+/* Fixed close button alignment */
+.close-banner {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 6px;
+  margin-left: 10px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.close-banner i {
+  display: block;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.close-banner:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+  .whatsapp-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 12px 15px 14px;
+  }
+
+  .whatsapp-content {
+    align-items: flex-start;
+  }
+
+  .close-banner {
+    position: absolute;
+    bottom: 15px;
+    right: 5px;
+    margin: 0;
+    padding: 4px;
+  }
+
+  .close-banner i {
+    font-size: 18px;
+  }
+
+  .whatsapp-text p {
+    font-size: 14px;
+  }
+
+  .whatsapp-text a {
+    font-size: 12px;
+  }
+}
+  
+  /* ==========================================================================
+   4. Banner / Swiper
+   ========================================================================== */
+.banner-box {
+  width: 100%; height: 220px;
+  padding: 8px 0;
+  background: #000;
+  border-radius: 0;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative; top: 8px;
+}
+.mySwiper {
+  width: 94%; height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  top: 10px;
+}
+.mySwiper img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Swiper controls */
+.swiper-button-prev,
+.swiper-button-next {
+  width: 36px !important; height: 36px !important;
+  border-radius: 50% !important;
+  background: #0004 !important;
+  display: flex !important;
+  align-items: center !important; justify-content: center !important;
+  top: 50% !important;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color: #ff5700 !important;
+  font-size: 15px !important; font-weight: bold !important;
+}
+.swiper-button-prev { left: 2px !important; }
+.swiper-button-next { right: 2px !important; }
+.swiper-pagination { bottom: 2px !important; }
+.swiper-pagination-bullet {
+  background: #0005 !important;
+  opacity: 1 !important;
+}
+.swiper-pagination-bullet-active {
+  background: #ff5700 !important;
+  opacity: 1 !important;
+}
+
+/* ==========================================================================
+   5. Game Box
+   ========================================================================== */
+.game-box {
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+  margin: 15px auto 20px;
+  padding: 15px;
+  background-color: #000;
+  border-radius: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.game-icon {
+  width: 70px; height: 70px;
+  border-radius: 16px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+.game-title {
+  font-size: 23px;
+  font-weight: 700;
+  margin: 0;
+  color: #fff;
+}
+.game-subtext {
+  display: flex; 
+  align-items: center; 
+  gap: 5px;
+  font-size: 13px; 
+  color: #fff;
+  margin-top: 2px;
+}
+/* Icons */
+.bolt-icon {
+  display: inline-flex; 
+  justify-content: center; 
+  align-items: center;
+  width: 14px; 
+  height: 14px; 
+  border-radius: 50%; 
+  border: 1px solid #fff;
+  margin-right: 4px;
+}
+.bolt-icon i { 
+  font-size: 11px; 
+  color: #fff; }
+  
+.shield-icon i {
+  font-size: 14px; 
+  color: #fff; 
+  margin-left: 12px;
+}
+
+/* ==========================================================================
+   6. Form Section
+   ========================================================================== */
+.step-title {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  max-width: 600px;
+  margin: 20px auto; 
+  padding: 10px 5px;
+}
+.step-title h3 {
+  font-size: 16px; 
+  font-weight: 700; 
+  margin: 0; 
+  color: #fff;
+}
+
+/* Info circle */
+.info-circle {
+  display: inline-flex; justify-content: center; 
+  align-items: center;
+  width: 20px; height: 20px; 
+  border-radius: 50%;
+  background-color: #ff5700;
+  margin-left: 5px;
+}
+.info-circle i { 
+  font-size: 13px; 
+  color: #000; 
+  padding-top: 2px; 
+}
+
+/* Inputs */
+input[type="text"] {
+  width: 90%;
+  padding: 17px;
+  margin: 6px 0;
+  border: 2px solid #515151;
+  border-radius: 10px;
+  font-size: 100%;
+  color: #fff;
+  background-color: #2B2B2B;
+  outline: none; /* ✅ Removes the default blue browser outline */
+  transition: border-color 0.3s ease; /* ✅ Smooth animation */
+}
+
+/* Highlight border when focused */
+input[type="text"]:focus {
+  border-color: #ff5700; /* ✅ Orange border when selected */
+}
+
+/* Form container */
+.form-section {
+  background: #000; 
+  border-radius: 15px;
+  padding: 20px; 
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.form-section p { 
+  font-size: 18px; 
+  margin: 5px; 
+  margin-top: 15px; 
+  color: #fff
+}
+  
+.form-section h3 { 
+  font-size: 18px; 
+  margin: 5px 0 20px; 
+  color: #fff; 
+}
+
+/* ==========================================================================
+   7. Category Options
+   ========================================================================== */
+.category-options { display: flex; gap: 12px; }
+.category input { display: none; }   /* hide radio dot */
+.category { cursor: pointer; }
+
+.category-card {
+  width: 90px; height: 90px; border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #515151;
+  display: flex; flex-direction: column;
+  margin-bottom: 25px;
+  transition: 0.3s;
+}
+
+.card-image { flex: 1; }
+.card-image img {
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  display: block;
+}
+
+.card-label {
+  text-align: center; 
+  font-size: 12px; 
+  font-weight: 600;
+  padding: 3px 4px;
+  background: #2B2B2B; 
+  color: #fff; 
+  line-height: 1.2;
+  transition: 0.3s;
+}
+
+/* Selected */
+.category input:checked + .category-card {
+  border: 2px solid #FF5700;
+}
+
+.category input:checked + .category-card .card-label {
+  background: linear-gradient(90deg, #FF5700, #FF1400);
+  color: #fff;
+}
+
+/* ==========================================================================
+   8. Package Section
+   ========================================================================== */
+.packages {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px; 
+  margin: 20px 0;
+}
+.package {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px; 
+  min-height: 65px;
+  background: #2B2B2B; 
+  border: 2px solid #515151; 
+  border-radius: 10px;
+  cursor: pointer; 
+  transition: 0.2s ease;
+}
+.package input { display: none; }
+
+/* Package tag */
+.tag {
+  position: absolute; 
+  top: -1px; 
+  left: -1px;
+  background: #FF0F07; 
+  color: #fff; 
+  font-size: 8px;
+  padding: 3px 8px; 
+  border-radius: 8px 0 8px 0;
+}
+
+.tag.special { background: #ff9800; }
+.tag.popular { background: #e91e63; }
+
+/* Package content */
+.package .content {
+  margin-top: 6px; 
+  font-size: 13px; 
+  font-weight: 600; 
+  color: #fff;
+}
+
+.package .bonus {
+  margin-top: 2px; 
+  font-size: 10px; 
+  color: #fff;
+}
+
+.package .price {
+  margin-top: 10px; 
+  font-size: 15px; 
+  font-weight: bold; 
+  color: #fff;
+}
+
+.package .icon {
+  position: absolute; 
+  top: 45px; 
+  right: 2px;
+  width: 35px; 
+  height: 35px;
+}
+
+.package .icon img {
+  width: 100%; 
+  height: auto;
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+/* Checkmark */
+.checkmark {
+  position: absolute; 
+  top: -2px; 
+  right: -2px;
+  width: 32px; 
+  height: 28px; 
+  background: #FF5700; 
+  color: #fff;
+  font-size: 18px; 
+  font-weight: bold;
+  border-radius: 0 8px 0 8px;
+  display: none; 
+  align-items: center; 
+  justify-content: center;
+}
+
+/* When selected */
+.package input:checked ~ .checkmark { display: flex; }
+.package input:checked ~ .content,
+.package input:checked ~ .bonus { color: #FF5700; }
+.package:has(input:checked) {
+  border: 2px solid #FF5700;
+  background: #2B2B2B;
+  filter: drop-shadow(0 0 4px #FF5700);
+  box-shadow: 0 0 10px rgba(255, 87, 0, 0.3);
+}
+
+/* ==========================================================================
+   9. Payment Options
+   ========================================================================== */
+.payment-option {
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px;
+}
+
+.option-box {
+  display: flex; 
+  align-items: center; 
+  gap: 10px;
+  padding: 14px;
+  background: #2B2B2B; 
+  border: 1px solid #515151; 
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.option-box input { display: none; }
+.option-box .circle {
+  width: 16px; 
+  height: 16px;
+  border: 2px solid #FF5700; 
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.option-box .text {
+  font-size: 15px; 
+  font-weight: 500; 
+  color: #fff;
+}
+
+.upi-logo { height: 22px; width: auto; }
+/* Selected */
+.option-box:has(input:checked) {
+  border: 1px solid #FF5700;
+  filter: drop-shadow(0 0 4px #FF5700);
+  box-shadow: 0 0 10px rgba(255, 87, 0, 0.3);
+}
+
+/* ==========================================================================
+   10. Buy Button
+   ========================================================================== */
+#selectedPackage,
+#selectedAmount {
+  color: #FF5700;
+  font-weight: bold;
+}
+
+#buyBtn {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px; 
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(45deg, #FF5700, #FF1400);
+  border: none; 
+  border-radius: 10px;
+  cursor: not-allowed;
+  transition: 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+#buyBtn[disabled] {
+  opacity: 0.7; 
+  cursor: not-allowed;
+}
+
+#buyBtn.enabled {
+  cursor: pointer;
+  background: #e64a00;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  transform: translateY(-1px);
+}
+
+/* Custom SweetAlert OK button */
+.custom-ok-btn {
+  padding: 12px 35px !important; /* ✅ Larger size */
+  font-size: 18px !important;    /* ✅ Bigger text */
+  border-radius: 8px !important; /* ✅ Rounded corners */
+  font-weight: 600 !important;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   11. Footer
+   ========================================================================== */
+.footer {
+  padding: 30px 15px;
+  border-radius: 15px;
+}
+.footer-top { display: flex; justify-content: flex-start; }
+.footer-left { text-align: left; }
+.footer-logo img { height: 60px; display: block; }
+.footer-logo h2 { margin: 5px 0; font-size: 24px; color: #ff5a00; }
+
+.made-in { line-height: 16px; color: #fff; }
+.contact-info { 
+  margin: 8px 0; 
+  color: #fff; 
+  font-size: 14px; 
+  line-height: 14px;
+}
+
+.contact-info a {
+  display: inline-block; 
+  text-decoration: none; 
+  color: #fff;
+}
+
+.contact-info a:hover {
+  text-decoration: underline; 
+  color: #007bff;
+}
+
+.quick-links,
+.social-links {
+  margin: 20px 0; 
+  color: #fff; 
+  font-size: 14px;
+}
+
+.quick-links a {
+  display: block; 
+  color: #007bff; 
+  text-decoration: none; 
+  margin: 5px 0;
+}
+
+.quick-links a:hover { text-decoration: underline; }
+.social-links a {
+  display: inline-block; 
+  margin: 0 8px; 
+  font-size: 20px; 
+  color: #fff;
+}
+
+.social-links a:hover { color: #007bff; }
+
+/* Support buttons */
+.support-buttons {
+  display: flex; 
+  justify-content: center; 
+  flex-wrap: wrap; 
+  gap: 10px;
+  text-align: center; 
+  margin-top: 20px;
+}
+.support-buttons a {
+  display: inline-block;
+  padding: 15px 18px;
+  color: #fff; 
+  text-decoration: none;
+  border-radius: 10px; 
+  font-weight: bold;
+  min-width: 220px; 
+  text-align: center;
+}
+.whatsapp-support { background: linear-gradient(45deg, #03C508, #03A606); font-size: 16px; }
+.telegram-support { background: linear-gradient(45deg, #FF5700, #FF1400); font-size: 16px; }
+
+.copy {
+  font-size: 13px; 
+  color: #fff; 
+  text-align: center; 
+  margin-top: 15px;
+}
+
+/* ==========================================================================
+   12. Responsive
+   ========================================================================== */
+@media (max-width: 768px) {
+  .footer-top { flex-direction: column; text-align: left; }
+  .footer-left { width: 100%; }
+  .support-buttons a { width: 90%; }
+
+  body { overflow-x: hidden; }
+  .footer-box {
+    position: relative; width: 100vw; left: 50%;
+    transform: translateX(-50%);
+    background: #000; padding: 5px 1px; box-sizing: border-box;
+    border-radius: 0; margin-top: -12px; z-index: 0;
+  }
+}

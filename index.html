@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ryuko Official Store</title>
+  <meta name="description" content="Ryuko Official Store — Secure and instant game top-ups with trusted service.">
+  <meta name="keywords" content="Ryuko, game store, top up, Mobile Legends, instant delivery">
+  <meta name="author" content="Ryuko Official">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Swiper CSS (if needed) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">
+      <i class="fa fa-bars"></i>
+    </button>
+    <img src="image/ryuko.png" alt="Ryuko Logo" class="logo" />
+    <a href="login.html" class="login-btn">
+      Login <i class="fas fa-arrow-right"></i>
+    </a>
+  </header>
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar">
+    <button class="close-btn" onclick="toggleMenu()" aria-label="Close menu">
+      <i class="fa fa-times"></i>
+    </button>
+    <ul class="menu">
+      <li><a href="index.html"><i class="fas fa-home icon"></i> Home</a></li>
+      <li><a href="index.html"><i class="fas fa-gamepad icon"></i> Games</a></li>
+      <li><a href="https://wa.me/+917005121396"><i class="fa fa-headset icon"></i> Support</a></li>
+      <li><a href="#"><i class="fa fa-file-contract icon"></i> Terms & Conditions</a></li>
+      <li><a href="#"><i class="fa fa-info-circle icon"></i> About Us</a></li>
+    </ul>
+  </aside>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+<!-- WhatsApp Channel Banner -->
+<div class="whatsapp-banner" id="whatsappBanner">
+  <div class="whatsapp-content">
+    <img src="image/whatsapp.png" alt="WhatsApp" class="whatsapp-logo">
+    <div class="whatsapp-text">
+      <p>Join our whatsapp channel</p>
+      <a href="https://chat.whatsapp.com/Kz1g4Kn0f9pDVlqdn42T6v" target="_blank">
+        Click here to join whatsapp channel for latest updates!
+      </a>
+    </div>
+  </div>
+  <button class="close-banner" onclick="document.getElementById('whatsappBanner').style.display='none'">
+    <i class="fa fa-times"></i>
+  </button>
+</div>
+
+  <!-- Banner -->
+  <section class="banner-box">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="image/banner1.jpg" alt="Banner 1" /></div>
+        <div class="swiper-slide"><img src="image/banner2.jpg" alt="Banner 2" /></div>
+        <div class="swiper-slide"><img src="image/banner3.jpg" alt="Banner 3" /></div>
+        <div class="swiper-slide"><img src="image/banner4.jpg" alt="Banner 4" /></div>
+        <div class="swiper-slide"><img src="image/banner5.jpg" alt="Banner 5" /></div>
+        <div class="swiper-slide"><img src="image/banner6.jpg" alt="Banner 6" /></div>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
+  
+    <!-- Main Section -->
+  <main class="container">
+      <!-- Game Box -->
+    <section>
+      <div class="game-box">
+        <img src="image/mlbb.jpg" alt="Mobile Legends" class="game-icon" />
+        <div class="game-info">
+          <h2 class="game-title">Mobile Legends</h2>
+          <div class="game-subtext">
+            <span class="bolt-icon"><i class="fas fa-bolt"></i></span>Instant Delivery
+            <span class="shield-icon"><i class="fas fa-shield-alt"></i></span>Secure Payments
+          </div>
+        </div>
+      </div>
+    </section>
+    
+        <!-- Step 1: Account Details -->
+    <section class="form-section">
+      <h3>
+        1. ENTER ACCOUNT DETAILS
+        <span class="info-circle"><i class="fas fa-question"></i></span>
+      </h3>
+      <p>User ID</p>
+      <input type="text" placeholder="USER ID" id="userId" />
+      <p>Zone ID</p>
+      <input type="text" placeholder="( ZONE ID )" id="zoneId" />
+    </section>
+    
+        <!-- Step 2: Category Selection -->
+    <section class="form-section">
+      <h3>2. CHOOSE A CATEGORY</h3>
+      <div class="category-options">
+        <label class="category">
+          <input type="radio" name="category" value="large" checked />
+          <div class="category-card">
+            <div class="card-image">
+              <img src="image/mlbb3.jpg" alt="Large Pack" width="100" />
+            </div>
+            <div class="card-label">Large Pack</div>
+          </div>
+        </label>
+        <label class="category">
+          <input type="radio" name="category" value="small" />
+          <div class="category-card">
+            <div class="card-image">
+              <img src="image/small.png" alt="Small Pack" width="100" />
+            </div>
+            <div class="card-label">Small Pack</div>
+          </div>
+        </label>
+        <label class="category">
+          <input type="radio" name="category" value="weekly" />
+          <div class="category-card">
+            <div class="card-image">
+              <img src="image/weekly3.png" alt="Weekly" width="100" />
+            </div>
+            <div class="card-label">Weekly Passes</div>
+          </div>
+        </label>
+      </div>
+
+      <!-- Container for dynamic package HTML -->
+      <div id="content-container"></div>
+    </section>
+
+    <!-- Step 3: Payment Selection -->
+    <section class="form-section">
+      <h3>4. SELECT PAYMENT</h3>
+      <div class="payment-option">
+        <label class="option-box">
+          <input type="radio" name="payment" value="UPI Number" />
+          <span class="circle"></span>
+          <span class="text">MERCHANT ID</span>
+        </label>
+        <label class="option-box">
+          <input type="radio" name="payment" value="UPI QR SCANNER" checked />
+          <img src="image/upi.png" alt="UPI QR" class="upi-logo" />
+          <span class="text">UPI QR SCANNER</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Step 4: Buy Button -->
+    <section class="form-section">
+      <h3>5. COMPLETE YOUR ORDER</h3>
+      <div class="summary">
+        <p><strong>Selected Package:</strong> <span id="selectedPackage">None</span></p>
+        <p><strong>Amount:</strong> ₹<span id="selectedAmount">0</span></p>
+      </div>
+      <button id="buyBtn" disabled aria-label="Buy Now">Buy Now</button>
+    </section>
+    </main>
+
+  <!-- Footer -->
+  <section class="footer-box">
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-left">
+          <div class="footer-logo">
+            <img src="image/ryuko.png" alt="Ryuko Logo" />
+          </div>
+          <p class="made-in">Made with ❤️ in India</p>
+          <p class="contact-info"><a href="https://wa.me/+917005121396">+91 7005121396</a></p>
+          <p class="contact-info"><a href="mailto:ryukoofficialcontact@gmail.com">ryukoofficialcontact@gmail.com</a></p>
+          <p class="contact-info">India</p>
+
+          <div class="quick-links">
+            <h3>Quick Links</h3>
+            <a href="https://wa.me/+917005121396">Contact Us</a>
+            <a href="https://chat.whatsapp.com/Kz1g4Kn0f9pDVlqdn42T6v">Join our WhatsApp channel</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+          </div>
+
+          <div class="social-links">
+            <h3>Connect with us 👇</h3>
+            <a href="https://instagram.com/_akazastore_" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="mailto:ryukoofficialcontact@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="support-buttons">
+        <a href="https://wa.me/+917005121396" class="whatsapp-support" target="_blank">WhatsApp Website Support</a>
+        <a href="https://t.me/KyojuroPlayz" class="telegram-support" target="_blank">Developer Contact</a>
+      </div>
+
+      <p class="copy">&copy; 2025 Ryuko Official. All rights reserved.</p>
+    </footer>
+  </section>
+    
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="script.js"></script>
+</body>
+</html>
